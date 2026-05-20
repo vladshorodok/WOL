@@ -28,5 +28,7 @@ namespace WakeOnLan.Core
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string MacAddress { get; set; }
+        public bool IsPhoneCall { get; set; }
+        public bool IsSms { get; set; }
     }
 }

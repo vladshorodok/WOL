@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Diagnostics;
 
 namespace WakeOnLan.Core
 {
@@ -213,6 +214,7 @@ namespace WakeOnLan.Core
             }
 
             Log($"Autorizat: {user.Name} → WOL către {user.MacAddress}");
+
 
             try
             {

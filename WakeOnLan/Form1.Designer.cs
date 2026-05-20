@@ -29,10 +29,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblStatusDot = new System.Windows.Forms.Label();
             this.btnRefreshPorts = new System.Windows.Forms.Button();
@@ -42,9 +43,6 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -53,6 +51,11 @@
             this.lblLogs = new System.Windows.Forms.Label();
             this.btnSaveLogs = new System.Windows.Forms.Button();
             this.lblCopyRight = new System.Windows.Forms.Label();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPhoneCall = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColSMS = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
@@ -102,11 +105,14 @@
             // 
             // cmbPort
             // 
-            this.cmbPort.FormattingEnabled = true;
+            this.cmbPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbPort.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPort.Location = new System.Drawing.Point(380, 22);
             this.cmbPort.Name = "cmbPort";
             this.cmbPort.Size = new System.Drawing.Size(121, 21);
             this.cmbPort.TabIndex = 4;
+            this.cmbPort.UseWaitCursor = true;
             // 
             // lblPort
             // 
@@ -163,80 +169,59 @@
             // dgvUsers
             // 
             this.dgvUsers.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(122)))), ((int)(((byte)(149)))));
+            this.dgvUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvUsers.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColName,
             this.PhoneNumber,
-            this.MacAddress});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(170)))), ((int)(((byte)(187)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle6;
+            this.MacAddress,
+            this.ColPhoneCall,
+            this.ColSMS});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(122)))), ((int)(((byte)(149)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvUsers.EnableHeadersVisualStyles = false;
             this.dgvUsers.GridColor = System.Drawing.SystemColors.Control;
             this.dgvUsers.Location = new System.Drawing.Point(699, 150);
             this.dgvUsers.MultiSelect = false;
             this.dgvUsers.Name = "dgvUsers";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(122)))), ((int)(((byte)(149)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvUsers.RowHeadersVisible = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(170)))), ((int)(((byte)(206)))));
-            this.dgvUsers.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(122)))), ((int)(((byte)(149)))));
+            this.dgvUsers.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvUsers.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsers.Size = new System.Drawing.Size(345, 150);
+            this.dgvUsers.Size = new System.Drawing.Size(427, 150);
             this.dgvUsers.TabIndex = 2;
-            // 
-            // ColName
-            // 
-            this.ColName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColName.FillWeight = 150F;
-            this.ColName.HeaderText = "Name";
-            this.ColName.Name = "ColName";
-            // 
-            // PhoneNumber
-            // 
-            this.PhoneNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.PhoneNumber.FillWeight = 150F;
-            this.PhoneNumber.HeaderText = "Numar Telefon";
-            this.PhoneNumber.Name = "PhoneNumber";
-            this.PhoneNumber.Width = 102;
-            // 
-            // MacAddress
-            // 
-            this.MacAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.MacAddress.FillWeight = 150F;
-            this.MacAddress.HeaderText = "Adresa MAC";
-            this.MacAddress.Name = "MacAddress";
             // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(722, 327);
+            this.btnAdd.Location = new System.Drawing.Point(699, 326);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 3;
@@ -249,7 +234,8 @@
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Location = new System.Drawing.Point(820, 327);
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(806, 326);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 4;
@@ -262,6 +248,7 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(160)))), ((int)(((byte)(70)))));
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Location = new System.Drawing.Point(926, 326);
             this.btnSave.Name = "btnSave";
@@ -309,7 +296,7 @@
             // 
             // btnSaveLogs
             // 
-            this.btnSaveLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.btnSaveLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.btnSaveLogs.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSaveLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveLogs.ForeColor = System.Drawing.Color.White;
@@ -331,6 +318,42 @@
             this.lblCopyRight.TabIndex = 7;
             this.lblCopyRight.Text = "POWERTRACE SRL Coypright 2026\r\nAutor: Vladislav Shorodok\r\n";
             this.lblCopyRight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ColName
+            // 
+            this.ColName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColName.FillWeight = 150F;
+            this.ColName.HeaderText = "Name";
+            this.ColName.Name = "ColName";
+            // 
+            // PhoneNumber
+            // 
+            this.PhoneNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.PhoneNumber.FillWeight = 150F;
+            this.PhoneNumber.HeaderText = "Numar Telefon";
+            this.PhoneNumber.Name = "PhoneNumber";
+            this.PhoneNumber.Width = 102;
+            // 
+            // MacAddress
+            // 
+            this.MacAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MacAddress.FillWeight = 150F;
+            this.MacAddress.HeaderText = "Adresa MAC";
+            this.MacAddress.Name = "MacAddress";
+            // 
+            // ColPhoneCall
+            // 
+            this.ColPhoneCall.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColPhoneCall.HeaderText = "Apel";
+            this.ColPhoneCall.Name = "ColPhoneCall";
+            this.ColPhoneCall.Width = 34;
+            // 
+            // ColSMS
+            // 
+            this.ColSMS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColSMS.HeaderText = "SMS";
+            this.ColSMS.Name = "ColSMS";
+            this.ColSMS.Width = 36;
             // 
             // Form1
             // 
@@ -371,13 +394,15 @@
         private System.Windows.Forms.ComboBox cmbPort;
         private System.Windows.Forms.Label lblPort;
         private System.Windows.Forms.Label lblStatusDot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MacAddress;
         private System.Windows.Forms.Label lblCopyRight;
         private System.Windows.Forms.ListBox lstLogs;
         private System.Windows.Forms.Label lblLogs;
         private System.Windows.Forms.Button btnSaveLogs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MacAddress;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColPhoneCall;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColSMS;
     }
 }
 

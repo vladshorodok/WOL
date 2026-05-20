@@ -29,6 +29,10 @@ namespace WakeOnLan.Core
 
         public static void Save(AppConfig config, string path)
         {
+            string dir = Path.GetDirectoryName(path);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
             using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
                 _ser.Serialize(fs, config);

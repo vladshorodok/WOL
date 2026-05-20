@@ -55,6 +55,10 @@ namespace WolApp
                 var name = row.Cells["ColName"]?.Value?.ToString()?.Trim();
                 var phone = row.Cells["PhoneNumber"]?.Value?.ToString()?.Trim();
                 var mac = row.Cells["MacAddress"]?.Value?.ToString()?.Trim();
+                var isPhoneCall = row.Cells["ColPhoneCall"]?.Value != null &&
+                                  (bool)row.Cells["ColPhoneCall"].Value;
+                var isSms = row.Cells["ColSms"]?.Value != null &&
+                            (bool)row.Cells["ColSms"].Value;
 
                 if (!string.IsNullOrEmpty(name) &&
                     !string.IsNullOrEmpty(phone) &&
@@ -64,7 +68,9 @@ namespace WolApp
                     {
                         Name = name,
                         PhoneNumber = phone,
-                        MacAddress = mac
+                        MacAddress = mac,
+                        IsPhoneCall = isPhoneCall,
+                        IsSms = isSms
                     });
                 }
             }
@@ -109,7 +115,7 @@ namespace WolApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int idx = dgvUsers.Rows.Add("Nume", "07XXXXXXXX", "00:11:22:33:44:55");
+            int idx = dgvUsers.Rows.Add("Nume", "07XXXXXXXX", "00:11:22:33:44:55", false, false);
             dgvUsers.CurrentCell = dgvUsers.Rows[idx].Cells[0];
             dgvUsers.BeginEdit(true);
         }
