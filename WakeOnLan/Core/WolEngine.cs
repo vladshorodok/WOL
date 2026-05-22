@@ -147,37 +147,25 @@ namespace WakeOnLan.Core
 
         private void CheckIncomingCall()
         {
-            // AT+CLCC listează apelurile active
-            // Răspuns dacă există apel: +CLCC: 1,1,4,0,0,"0737774955",129
             string r = SendAt("AT+CLCC");
+            if (!r.Contains("+CLCC:")) return;
 
-            if (!r.Contains("+CLCC:")) return; // niciun apel activ
-
-            // Extragem numărul dintre ghilimele
             int start = r.IndexOf('"');
             int end = r.IndexOf('"', start + 1);
-
             if (start < 0 || end < 0) return;
 
             string caller = r.Substring(start + 1, end - start - 1);
             Log($"Apel primit de la: {caller}");
 
-            // Respingem apelul (nu răspundem, doar citim numărul)
             SendAt("ATH");
-
-            HandleTrigger(caller);
+            HandleTrigger(caller, "call"); // ← motiv "call"
         }
 
         private void CheckSms()
         {
-            // Citim toate SMS-urile necitite
             string r = SendAt("AT+CMGL=\"REC UNREAD\"", 5000);
+            if (!r.Contains("+CMGL:")) return;
 
-            if (!r.Contains("+CMGL:")) return; // niciun SMS nou
-
-            // Fiecare SMS are forma:
-            // +CMGL: 1,"REC UNREAD","0737774955",,"24/01/01,10:00:00+00"
-            // textul mesajului
             var lines = r.Split(new[] { "\r\n", "\n" },
                                 StringSplitOptions.RemoveEmptyEntries);
 
@@ -185,22 +173,25 @@ namespace WakeOnLan.Core
             {
                 if (!lines[i].StartsWith("+CMGL:")) continue;
 
-                // Extragem numărul (al 3-lea câmp între ghilimele)
-                string header = lines[i];
-                string sender = ExtractThirdQuoted(header);
+                string sender = ExtractThirdQuoted(lines[i]);
                 string text = (i + 1 < lines.Length) ? lines[i + 1].Trim() : "";
 
-                Log($"SMS de la {sender}: {text}");
+                Log($"SMS de la {sender}: \"{text}\"");
 
-                // Ștergem SMS-ul după citire
-                string idx = header.Split(':')[1].Split(',')[0].Trim();
+                string idx = lines[i].Split(':')[1].Split(',')[0].Trim();
                 SendAt($"AT+CMGD={idx}");
 
-                HandleTrigger(sender);
+                if (!text.Trim().Equals("start", StringComparison.OrdinalIgnoreCase))
+                {
+                    Log($"⚠ SMS ignorat — mesaj necunoscut: \"{text}\". Trimite \"start\" pentru WOL.");
+                    continue;
+                }
+
+                HandleTrigger(sender, "sms");
             }
         }
 
-        public void HandleTrigger(string phoneNumber)
+        public void HandleTrigger(string phoneNumber, string motiv = "call")
         {
             string nr = Normalize(phoneNumber);
             var user = _config.Users.FirstOrDefault(
@@ -208,13 +199,25 @@ namespace WakeOnLan.Core
 
             if (user == null)
             {
-                Log("Număr neautorizat: " + phoneNumber);
+                Log($"Număr neautorizat: {phoneNumber}");
                 OnUnknownCaller?.Invoke(phoneNumber);
                 return;
             }
 
-            Log($"Autorizat: {user.Name} → WOL către {user.MacAddress}");
+            // Verifică dacă tipul de trigger e permis pentru acest utilizator
+            if (motiv == "call" && !user.IsPhoneCall)
+            {
+                Log($"⚠ {user.Name}: apelul telefonic nu e activat pentru acest utilizator.");
+                return;
+            }
 
+            if (motiv == "sms" && !user.IsSms)
+            {
+                Log($"⚠ {user.Name}: SMS-ul nu e activat pentru acest utilizator.");
+                return;
+            }
+
+            Log($"Autorizat: {user.Name} ({motiv}) → WOL către {user.MacAddress}");
 
             try
             {

@@ -30,7 +30,8 @@ namespace WolApp
         {
             dgvUsers.Rows.Clear();
             foreach (var u in _config.Users)
-                dgvUsers.Rows.Add(u.Name, u.PhoneNumber, u.MacAddress);
+                dgvUsers.Rows.Add(u.Name, u.PhoneNumber, u.MacAddress,
+                                  u.IsPhoneCall, u.IsSms);
         }
 
         private void LoadAvailablePorts()
@@ -174,6 +175,40 @@ namespace WolApp
         private void btnClearLog_Click_1(object sender, EventArgs e)
         {
             lstLogs.Items.Clear();
+        }
+
+        private void btnSaveLogs_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Folder Data/Logs/ lângă exe
+                string logsFolder = Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    "Data", "Logs" );
+
+                // Creează folderul dacă nu există
+                if (!Directory.Exists(logsFolder))
+                    Directory.CreateDirectory(logsFolder);
+
+                // Numele fișierului cu data și ora curentă
+                string fileName = $"log_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.txt";
+                string filePath = Path.Combine(logsFolder, fileName);
+
+                // Scriem toate liniile din ListBox
+                var lines = new System.Text.StringBuilder();
+                foreach (var item in lstLogs.Items)
+                    lines.AppendLine(item.ToString());
+
+                File.WriteAllText(filePath, lines.ToString(), System.Text.Encoding.UTF8);
+
+                MessageBox.Show($"Log salvat în:\n{filePath}", "Salvat",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Eroare la salvare log:\n{ex.Message}", "Eroare",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

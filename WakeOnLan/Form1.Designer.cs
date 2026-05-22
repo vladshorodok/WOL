@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCopyRight = new System.Windows.Forms.Label();
             this.lblStatusDot = new System.Windows.Forms.Label();
             this.btnRefreshPorts = new System.Windows.Forms.Button();
             this.cmbPort = new System.Windows.Forms.ComboBox();
@@ -43,6 +44,11 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPhoneCall = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColSMS = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -50,12 +56,6 @@
             this.lstLogs = new System.Windows.Forms.ListBox();
             this.lblLogs = new System.Windows.Forms.Label();
             this.btnSaveLogs = new System.Windows.Forms.Button();
-            this.lblCopyRight = new System.Windows.Forms.Label();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPhoneCall = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColSMS = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
@@ -76,6 +76,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1181, 60);
             this.panel1.TabIndex = 0;
+            // 
+            // lblCopyRight
+            // 
+            this.lblCopyRight.AutoSize = true;
+            this.lblCopyRight.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCopyRight.ForeColor = System.Drawing.Color.White;
+            this.lblCopyRight.Location = new System.Drawing.Point(962, 13);
+            this.lblCopyRight.Name = "lblCopyRight";
+            this.lblCopyRight.Size = new System.Drawing.Size(207, 34);
+            this.lblCopyRight.TabIndex = 7;
+            this.lblCopyRight.Text = "POWERTRACE SRL Coypright 2026\r\nAutor: Vladislav Shorodok\r\n";
+            this.lblCopyRight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblStatusDot
             // 
@@ -214,6 +226,42 @@
             this.dgvUsers.Size = new System.Drawing.Size(427, 150);
             this.dgvUsers.TabIndex = 2;
             // 
+            // ColName
+            // 
+            this.ColName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColName.FillWeight = 150F;
+            this.ColName.HeaderText = "Name";
+            this.ColName.Name = "ColName";
+            // 
+            // PhoneNumber
+            // 
+            this.PhoneNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.PhoneNumber.FillWeight = 150F;
+            this.PhoneNumber.HeaderText = "Numar Telefon";
+            this.PhoneNumber.Name = "PhoneNumber";
+            this.PhoneNumber.Width = 102;
+            // 
+            // MacAddress
+            // 
+            this.MacAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MacAddress.FillWeight = 150F;
+            this.MacAddress.HeaderText = "Adresa MAC";
+            this.MacAddress.Name = "MacAddress";
+            // 
+            // ColPhoneCall
+            // 
+            this.ColPhoneCall.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColPhoneCall.HeaderText = "Apel";
+            this.ColPhoneCall.Name = "ColPhoneCall";
+            this.ColPhoneCall.Width = 34;
+            // 
+            // ColSMS
+            // 
+            this.ColSMS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColSMS.HeaderText = "SMS";
+            this.ColSMS.Name = "ColSMS";
+            this.ColSMS.Width = 36;
+            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
@@ -306,54 +354,7 @@
             this.btnSaveLogs.TabIndex = 9;
             this.btnSaveLogs.Text = "Save Logs";
             this.btnSaveLogs.UseVisualStyleBackColor = false;
-            // 
-            // lblCopyRight
-            // 
-            this.lblCopyRight.AutoSize = true;
-            this.lblCopyRight.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCopyRight.ForeColor = System.Drawing.Color.White;
-            this.lblCopyRight.Location = new System.Drawing.Point(962, 13);
-            this.lblCopyRight.Name = "lblCopyRight";
-            this.lblCopyRight.Size = new System.Drawing.Size(207, 34);
-            this.lblCopyRight.TabIndex = 7;
-            this.lblCopyRight.Text = "POWERTRACE SRL Coypright 2026\r\nAutor: Vladislav Shorodok\r\n";
-            this.lblCopyRight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ColName
-            // 
-            this.ColName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColName.FillWeight = 150F;
-            this.ColName.HeaderText = "Name";
-            this.ColName.Name = "ColName";
-            // 
-            // PhoneNumber
-            // 
-            this.PhoneNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.PhoneNumber.FillWeight = 150F;
-            this.PhoneNumber.HeaderText = "Numar Telefon";
-            this.PhoneNumber.Name = "PhoneNumber";
-            this.PhoneNumber.Width = 102;
-            // 
-            // MacAddress
-            // 
-            this.MacAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.MacAddress.FillWeight = 150F;
-            this.MacAddress.HeaderText = "Adresa MAC";
-            this.MacAddress.Name = "MacAddress";
-            // 
-            // ColPhoneCall
-            // 
-            this.ColPhoneCall.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.ColPhoneCall.HeaderText = "Apel";
-            this.ColPhoneCall.Name = "ColPhoneCall";
-            this.ColPhoneCall.Width = 34;
-            // 
-            // ColSMS
-            // 
-            this.ColSMS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.ColSMS.HeaderText = "SMS";
-            this.ColSMS.Name = "ColSMS";
-            this.ColSMS.Width = 36;
+            this.btnSaveLogs.Click += new System.EventHandler(this.btnSaveLogs_Click);
             // 
             // Form1
             // 
