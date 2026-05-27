@@ -31,7 +31,7 @@ namespace WolApp
             dgvUsers.Rows.Clear();
             foreach (var u in _config.Users)
                 dgvUsers.Rows.Add(u.Name, u.PhoneNumber, u.MacAddress,
-                                  u.IsPhoneCall, u.IsSms);
+                                  u.IsPhoneCall, u.IsSms, u.SmsMessage);
         }
 
         private void LoadAvailablePorts()
@@ -56,10 +56,11 @@ namespace WolApp
                 var name = row.Cells["ColName"]?.Value?.ToString()?.Trim();
                 var phone = row.Cells["PhoneNumber"]?.Value?.ToString()?.Trim();
                 var mac = row.Cells["MacAddress"]?.Value?.ToString()?.Trim();
-                var isPhoneCall = row.Cells["ColPhoneCall"]?.Value != null &&
-                                  (bool)row.Cells["ColPhoneCall"].Value;
+                var isCall = row.Cells["ColPhoneCall"]?.Value != null &&
+                                 (bool)row.Cells["ColPhoneCall"].Value;
                 var isSms = row.Cells["ColSms"]?.Value != null &&
-                            (bool)row.Cells["ColSms"].Value;
+                                 (bool)row.Cells["ColSms"].Value;
+                var smsMessage = row.Cells["ColSmsMessage"]?.Value?.ToString()?.Trim() ?? "start";
 
                 if (!string.IsNullOrEmpty(name) &&
                     !string.IsNullOrEmpty(phone) &&
@@ -70,8 +71,9 @@ namespace WolApp
                         Name = name,
                         PhoneNumber = phone,
                         MacAddress = mac,
-                        IsPhoneCall = isPhoneCall,
-                        IsSms = isSms
+                        IsPhoneCall = isCall,
+                        IsSms = isSms,
+                        SmsMessage = string.IsNullOrEmpty(smsMessage) ? "start" : smsMessage
                     });
                 }
             }
@@ -116,7 +118,7 @@ namespace WolApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int idx = dgvUsers.Rows.Add("Nume", "07XXXXXXXX", "00:11:22:33:44:55", false, false);
+            int idx = dgvUsers.Rows.Add("Nume", "07XXXXXXXX", "00:11:22:33:44:55", false, false, "start");
             dgvUsers.CurrentCell = dgvUsers.Rows[idx].Cells[0];
             dgvUsers.BeginEdit(true);
         }
@@ -150,7 +152,6 @@ namespace WolApp
             lstLogs.TopIndex = lstLogs.Items.Count - 1;
         }
 
-        // ── Cleanup ───────────────────────────────────────────────────────────
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -170,7 +171,6 @@ namespace WolApp
                     dgvUsers.Rows.Remove(row);
         }
 
-        // ── Log ───────────────────────────────────────────────────────────────
 
         private void btnClearLog_Click_1(object sender, EventArgs e)
         {
@@ -181,7 +181,6 @@ namespace WolApp
         {
             try
             {
-                // Folder Data/Logs/ lângă exe
                 string logsFolder = Path.Combine(
                     AppDomain.CurrentDomain.BaseDirectory,
                     "Data", "Logs" );

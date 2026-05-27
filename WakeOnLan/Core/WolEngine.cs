@@ -158,7 +158,7 @@ namespace WakeOnLan.Core
             Log($"Apel primit de la: {caller}");
 
             SendAt("ATH");
-            HandleTrigger(caller, "call"); // ← motiv "call"
+            HandleTrigger(caller, "call"); 
         }
 
         private void CheckSms()
@@ -181,9 +181,27 @@ namespace WakeOnLan.Core
                 string idx = lines[i].Split(':')[1].Split(',')[0].Trim();
                 SendAt($"AT+CMGD={idx}");
 
-                if (!text.Trim().Equals("start", StringComparison.OrdinalIgnoreCase))
+                // Găsim userul după număr
+                string nr = Normalize(sender);
+                var user = _config.Users.FirstOrDefault(
+                                  u => Normalize(u.PhoneNumber) == nr);
+
+                if (user == null)
                 {
-                    Log($"⚠ SMS ignorat — mesaj necunoscut: \"{text}\". Trimite \"start\" pentru WOL.");
+                    Log($"Număr neautorizat: {sender}");
+                    OnUnknownCaller?.Invoke(sender);
+                    continue;
+                }
+
+                // Verifică mesajul specific userului
+                string expected = string.IsNullOrEmpty(user.SmsMessage)
+                                  ? "start"
+                                  : user.SmsMessage;
+
+                if (!text.Trim().Equals(expected, StringComparison.OrdinalIgnoreCase))
+                {
+                    Log($"⚠ SMS ignorat pentru {user.Name}: " +
+                        $"primit=\"{text}\" așteptat=\"{expected}\"");
                     continue;
                 }
 

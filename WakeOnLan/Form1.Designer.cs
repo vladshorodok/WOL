@@ -44,11 +44,6 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPhoneCall = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColSMS = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -56,6 +51,12 @@
             this.lstLogs = new System.Windows.Forms.ListBox();
             this.lblLogs = new System.Windows.Forms.Label();
             this.btnSaveLogs = new System.Windows.Forms.Button();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPhoneCall = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColSMS = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColSmsMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
@@ -74,7 +75,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1181, 60);
+            this.panel1.Size = new System.Drawing.Size(1340, 60);
             this.panel1.TabIndex = 0;
             // 
             // lblCopyRight
@@ -197,7 +198,8 @@
             this.PhoneNumber,
             this.MacAddress,
             this.ColPhoneCall,
-            this.ColSMS});
+            this.ColSMS,
+            this.ColSmsMessage});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -225,6 +227,101 @@
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsers.Size = new System.Drawing.Size(427, 150);
             this.dgvUsers.TabIndex = 2;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(699, 326);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Adauga";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnDelete.Location = new System.Drawing.Point(806, 326);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "Sterge";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(160)))), ((int)(((byte)(70)))));
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(926, 326);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Salveaza";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnClearLog
+            // 
+            this.btnClearLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.btnClearLog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClearLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearLog.ForeColor = System.Drawing.Color.White;
+            this.btnClearLog.Location = new System.Drawing.Point(14, 388);
+            this.btnClearLog.Name = "btnClearLog";
+            this.btnClearLog.Size = new System.Drawing.Size(75, 23);
+            this.btnClearLog.TabIndex = 7;
+            this.btnClearLog.Text = "Clear Logs";
+            this.btnClearLog.UseVisualStyleBackColor = false;
+            this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click_1);
+            // 
+            // lstLogs
+            // 
+            this.lstLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(88)))), ((int)(((byte)(114)))));
+            this.lstLogs.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstLogs.ForeColor = System.Drawing.Color.White;
+            this.lstLogs.FormattingEnabled = true;
+            this.lstLogs.ItemHeight = 14;
+            this.lstLogs.Location = new System.Drawing.Point(12, 140);
+            this.lstLogs.Name = "lstLogs";
+            this.lstLogs.Size = new System.Drawing.Size(637, 242);
+            this.lstLogs.TabIndex = 0;
+            // 
+            // lblLogs
+            // 
+            this.lblLogs.AutoSize = true;
+            this.lblLogs.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogs.Location = new System.Drawing.Point(14, 122);
+            this.lblLogs.Name = "lblLogs";
+            this.lblLogs.Size = new System.Drawing.Size(32, 15);
+            this.lblLogs.TabIndex = 8;
+            this.lblLogs.Text = "Logs";
+            // 
+            // btnSaveLogs
+            // 
+            this.btnSaveLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btnSaveLogs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSaveLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveLogs.ForeColor = System.Drawing.Color.White;
+            this.btnSaveLogs.Location = new System.Drawing.Point(107, 388);
+            this.btnSaveLogs.Name = "btnSaveLogs";
+            this.btnSaveLogs.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveLogs.TabIndex = 9;
+            this.btnSaveLogs.Text = "Save Logs";
+            this.btnSaveLogs.UseVisualStyleBackColor = false;
+            this.btnSaveLogs.Click += new System.EventHandler(this.btnSaveLogs_Click);
             // 
             // ColName
             // 
@@ -262,105 +359,17 @@
             this.ColSMS.Name = "ColSMS";
             this.ColSMS.Width = 36;
             // 
-            // btnAdd
+            // ColSmsMessage
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(699, 326);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "Adauga";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(806, 326);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "Sterge";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(160)))), ((int)(((byte)(70)))));
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(926, 326);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnClearLog
-            // 
-            this.btnClearLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.btnClearLog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClearLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearLog.ForeColor = System.Drawing.Color.White;
-            this.btnClearLog.Location = new System.Drawing.Point(37, 388);
-            this.btnClearLog.Name = "btnClearLog";
-            this.btnClearLog.Size = new System.Drawing.Size(75, 23);
-            this.btnClearLog.TabIndex = 7;
-            this.btnClearLog.Text = "Clear Logs";
-            this.btnClearLog.UseVisualStyleBackColor = false;
-            this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click_1);
-            // 
-            // lstLogs
-            // 
-            this.lstLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(88)))), ((int)(((byte)(114)))));
-            this.lstLogs.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstLogs.ForeColor = System.Drawing.Color.White;
-            this.lstLogs.FormattingEnabled = true;
-            this.lstLogs.ItemHeight = 14;
-            this.lstLogs.Location = new System.Drawing.Point(37, 140);
-            this.lstLogs.Name = "lstLogs";
-            this.lstLogs.Size = new System.Drawing.Size(589, 242);
-            this.lstLogs.TabIndex = 0;
-            // 
-            // lblLogs
-            // 
-            this.lblLogs.AutoSize = true;
-            this.lblLogs.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogs.Location = new System.Drawing.Point(40, 122);
-            this.lblLogs.Name = "lblLogs";
-            this.lblLogs.Size = new System.Drawing.Size(32, 15);
-            this.lblLogs.TabIndex = 8;
-            this.lblLogs.Text = "Logs";
-            // 
-            // btnSaveLogs
-            // 
-            this.btnSaveLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btnSaveLogs.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSaveLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveLogs.ForeColor = System.Drawing.Color.White;
-            this.btnSaveLogs.Location = new System.Drawing.Point(130, 388);
-            this.btnSaveLogs.Name = "btnSaveLogs";
-            this.btnSaveLogs.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveLogs.TabIndex = 9;
-            this.btnSaveLogs.Text = "Save Logs";
-            this.btnSaveLogs.UseVisualStyleBackColor = false;
-            this.btnSaveLogs.Click += new System.EventHandler(this.btnSaveLogs_Click);
+            this.ColSmsMessage.HeaderText = "Mesaj SMS";
+            this.ColSmsMessage.Name = "ColSmsMessage";
+            this.ColSmsMessage.Width = 86;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1181, 579);
+            this.ClientSize = new System.Drawing.Size(1340, 579);
             this.Controls.Add(this.btnSaveLogs);
             this.Controls.Add(this.lblLogs);
             this.Controls.Add(this.lstLogs);
@@ -404,6 +413,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MacAddress;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColPhoneCall;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColSMS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSmsMessage;
     }
 }
 

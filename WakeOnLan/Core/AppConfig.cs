@@ -30,5 +30,6 @@ namespace WakeOnLan.Core
         public string MacAddress { get; set; }
         public bool IsPhoneCall { get; set; }
         public bool IsSms { get; set; }
+        public string SmsMessage { get; set; } = "start";
     }
 }
